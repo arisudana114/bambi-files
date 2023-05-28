@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
 
@@ -16,14 +15,19 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async ({ name, email, password }) => {
     try {
-      const { data } = await axios.post(
-        `${process.env.API_URL}/api/auth/register`,
-        {
+      const response = await fetch(`${process.env.API_URL}/api/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           name,
           email,
           password,
-        }
-      );
+        }),
+      });
+
+      const data = await response.json();
 
       if (data?.user) {
         router.push("/");
@@ -37,7 +41,9 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.get("/api/auth/session?update");
+      const response = await fetch("/api/auth/session?update");
+
+      const data = await response.json();
 
       if (data?.user) {
         setUser(data.user);
@@ -52,15 +58,18 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
 
-      const { data } = await axios.put(
+      const response = await fetch(
         `${process.env.API_URL}/api/auth/me/update`,
-        formData,
         {
+          method: "PUT",
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          body: formData,
         }
       );
+
+      const data = await response.json();
 
       if (data?.user) {
         loadUser();
@@ -74,13 +83,21 @@ export const AuthProvider = ({ children }) => {
 
   const updatePassword = async ({ currentPassword, newPassword }) => {
     try {
-      const { data } = await axios.put(
+      const response = await fetch(
         `${process.env.API_URL}/api/auth/me/update_password`,
         {
-          currentPassword,
-          newPassword,
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            currentPassword,
+            newPassword,
+          }),
         }
       );
+
+      const data = await response.json();
 
       if (data?.success) {
         router.replace("/me");
@@ -92,10 +109,15 @@ export const AuthProvider = ({ children }) => {
 
   const addNewAddress = async (address) => {
     try {
-      const { data } = await axios.post(
-        `${process.env.API_URL}/api/address`,
-        address
-      );
+      const response = await fetch(`${process.env.API_URL}/api/address`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(address),
+      });
+
+      const data = await response.json();
 
       if (data) {
         router.push("/me");
@@ -107,10 +129,15 @@ export const AuthProvider = ({ children }) => {
 
   const updateAddress = async (id, address) => {
     try {
-      const { data } = await axios.put(
-        `${process.env.API_URL}/api/address/${id}`,
-        address
-      );
+      const response = await fetch(`${process.env.API_URL}/api/address/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(address),
+      });
+
+      const data = await response.json();
 
       if (data?.address) {
         setUpdated(true);
@@ -123,9 +150,11 @@ export const AuthProvider = ({ children }) => {
 
   const deleteAddress = async (id) => {
     try {
-      const { data } = await axios.delete(
-        `${process.env.API_URL}/api/address/${id}`
-      );
+      const response = await fetch(`${process.env.API_URL}/api/address/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await response.json();
 
       if (data?.success) {
         router.push("/me");

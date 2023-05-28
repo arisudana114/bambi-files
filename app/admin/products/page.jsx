@@ -1,6 +1,4 @@
 import React from "react";
-import axios from "axios";
-
 import queryString from "query-string";
 import Products from "@/components/admin/Products";
 
@@ -11,9 +9,11 @@ const getProducts = async (searchParams) => {
 
   const searchQuery = queryString.stringify(urlParams);
 
-  const { data } = await axios.get(
+  const response = await fetch(
     `${process.env.API_URL}/api/products?${searchQuery}`
   );
+  const data = await response.json();
+
   return data;
 };
 

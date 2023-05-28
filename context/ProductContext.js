@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
 
@@ -15,10 +14,18 @@ export const ProductProvider = ({ children }) => {
 
   const updateProduct = async (product, id) => {
     try {
-      const { data } = await axios.put(
+      const response = await fetch(
         `${process.env.API_URL}/api/admin/products/${id}`,
-        product
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
+        }
       );
+
+      const data = await response.json();
 
       if (data) {
         setUpdated(true);
@@ -31,10 +38,18 @@ export const ProductProvider = ({ children }) => {
 
   const newProduct = async (product) => {
     try {
-      const { data } = await axios.post(
+      const response = await fetch(
         `${process.env.API_URL}/api/admin/products`,
-        product
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
+        }
       );
+
+      const data = await response.json();
 
       if (data) {
         router.replace("/admin/products");
@@ -46,9 +61,14 @@ export const ProductProvider = ({ children }) => {
 
   const deleteProduct = async (id) => {
     try {
-      const { data } = await axios.delete(
-        `${process.env.API_URL}/api/admin/products/${id}`
+      const response = await fetch(
+        `${process.env.API_URL}/api/admin/products/${id}`,
+        {
+          method: "DELETE",
+        }
       );
+
+      const data = await response.json();
 
       if (data?.success) {
         router.replace(`/admin/products`);
@@ -61,15 +81,15 @@ export const ProductProvider = ({ children }) => {
   const uploadProductImages = async (formData, id) => {
     try {
       setLoading(true);
-      const { data } = await axios.post(
+      const response = await fetch(
         `${process.env.API_URL}/api/admin/products/upload_images/${id}`,
-        formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          method: "POST",
+          body: formData,
         }
       );
+
+      const data = await response.json();
 
       if (data?.data) {
         setLoading(false);

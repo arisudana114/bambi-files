@@ -1,10 +1,9 @@
 import React from "react";
-import axios from "axios";
-
 import UpdateProduct from "@/components/admin/UpdateProduct";
 
 const getProduct = async (id) => {
-  const { data } = await axios.get(`${process.env.API_URL}/api/products/${id}`);
+  const response = await fetch(`${process.env.API_URL}/api/products/${id}`);
+  const data = await response.json();
   return data;
 };
 

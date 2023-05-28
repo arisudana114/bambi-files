@@ -1,6 +1,4 @@
-import axios from "axios";
 import React from "react";
-
 import { cookies } from "next/headers";
 import ListOrders from "@/components/orders/ListOrders";
 import queryString from "query-string";
@@ -16,7 +14,7 @@ const getOrders = async (searchParams) => {
 
   const searchQuery = queryString.stringify(urlParams);
 
-  const { data } = await axios.get(
+  const response = await fetch(
     `${process.env.API_URL}/api/orders/me?${searchQuery}`,
     {
       headers: {
@@ -24,6 +22,7 @@ const getOrders = async (searchParams) => {
       },
     }
   );
+  const data = await response.json();
 
   return data;
 };

@@ -150,7 +150,7 @@ const NewProduct = () => {
 
         <button
           type="submit"
-          className="my-2 px-4 py-2 text-center inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 w-full"
+          className="my-2 px-4 py-2 text-center inline-block text-white bg-[#193f88] border border-transparent rounded-md hover:bg-[#0a2c6c] w-full"
         >
           Create Product
         </button>

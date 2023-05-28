@@ -5,7 +5,6 @@ import BreadCrumbs from "../layouts/BreadCrumbs";
 import Link from "next/link";
 import CartContext from "@/context/CartContext";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 const Shipping = ({ addresses }) => {
   const { cart } = useContext(CartContext);
@@ -22,17 +21,24 @@ const Shipping = ({ addresses }) => {
     }
 
     try {
-      const { data } = await axios.post(
+      const response = await fetch(
         `${process.env.API_URL}/api/orders/checkout_session`,
         {
-          items: cart?.cartItems,
-          shippingInfo,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: cart?.cartItems,
+            shippingInfo,
+          }),
         }
       );
+      const data = await response.json();
 
       window.location.href = data.url;
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
     }
   };
 
@@ -50,24 +56,27 @@ const Shipping = ({ addresses }) => {
           <div className="flex flex-col md:flex-row gap-4 lg:gap-8">
             <main className="md:w-2/3">
               <article className="border border-gray-200 bg-white shadow-sm rounded p-4 lg:p-6 mb-5">
-                <h2 class="text-xl font-semibold mb-5">Shipping information</h2>
+                <h2 className="text-xl font-semibold mb-5">
+                  Shipping information
+                </h2>
 
-                <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                <div className="grid sm:grid-cols-2 gap-4 mb-6">
                   {addresses.map((address) => (
                     <label
-                      class="flex p-3 border border-gray-200 rounded-md bg-gray-50 hover:border-blue-400 hover:bg-blue-50 cursor-pointer"
+                      className="flex p-3 border border-gray-200 rounded-md bg-gray-50 hover:border-blue-400 hover:bg-blue-50 cursor-pointer"
                       onClick={() => setShippingAddress(address)}
+                      key={address._id}
                     >
                       <span>
                         <input
                           name="shipping"
                           type="radio"
-                          class="h-4 w-4 mt-1"
+                          className="h-4 w-4 mt-1"
                         />
                       </span>
-                      <p class="ml-2">
+                      <p className="ml-2">
                         <span>{address.street}</span>
-                        <small class="block text-sm text-gray-400">
+                        <small className="block text-sm text-gray-400">
                           {address.city}, {address.state}, {address.zipCode}
                           <br />
                           {address.country}
@@ -81,7 +90,7 @@ const Shipping = ({ addresses }) => {
 
                 <Link
                   href="/address/new"
-                  className="px-4 py-2 inline-block text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100"
+                  className="px-4 py-2 inline-block text-[#193f88] border border-gray-300 rounded-md hover:bg-gray-100"
                 >
                   <i className="mr-1 fa fa-plus"></i> Add new address
                 </Link>
@@ -89,12 +98,12 @@ const Shipping = ({ addresses }) => {
                 <div className="flex justify-end space-x-2 mt-10">
                   <Link
                     href="/cart"
-                    className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
+                    className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-[#193f88] "
                   >
                     Back
                   </Link>
                   <a
-                    className="px-5 py-2 inline-block text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer"
+                    className="px-5 py-2 inlineblock text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer"
                     onClick={checkoutHandler}
                   >
                     Checkout
@@ -124,26 +133,29 @@ const Shipping = ({ addresses }) => {
 
                 <hr className="my-4" />
 
-                <h2 class="text-lg font-semibold mb-3">Items in cart</h2>
+                <h2 className="text-lg font-semibold mb-3">Items in cart</h2>
 
                 {cart?.cartItems?.map((item) => (
-                  <figure class="flex items-center mb-4 leading-5">
+                  <figure
+                    className="flex items-center mb-4 leading-5"
+                    key={item.id}
+                  >
                     <div>
-                      <div class="block relative w-20 h-20 rounded p-1 border border-gray-200">
+                      <div className="block relative w-20 h-20 rounded p-1 border border-gray-200">
                         <img
                           width="50"
                           height="50"
                           src={item.image}
                           alt="Title"
                         />
-                        <span class="absolute -top-2 -right-2 w-6 h-6 text-sm text-center flex items-center justify-center text-white bg-gray-400 rounded-full">
+                        <span className="absolute -top-2 -right-2 w-6 h-6 text-sm text-center flex items-center justify-center text-white bg-gray-400 rounded-full">
                           {item.quantity}
                         </span>
                       </div>
                     </div>
-                    <figcaption class="ml-3">
+                    <figcaption className="ml-3">
                       <p>{item.name.substring(0, 50)}</p>
-                      <p class="mt-1 text-gray-400">
+                      <p className="mt-1 text-gray-400">
                         Total: ${item.quantity * item.price}
                       </p>
                     </figcaption>
