@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    API_URL: "https://bambi-files-bojt037yo-arisudana114.vercel.app",
+    API_URL: "https://bambi-files-qa98zxq8w-arisudana114.vercel.app/",
     DB_URI:
       "mongodb+srv://bambi:Risingsun1@cluster0.bvfk6.mongodb.net/bambi?retryWrites=true&w=majority",
     CLOUD_NAME: "dxqxkdc0r",
