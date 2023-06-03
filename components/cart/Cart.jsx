@@ -48,8 +48,8 @@ const Cart = () => {
 
   return (
     <>
-      <section className="py-5 sm:py-7 bg-blue-100">
-        <div className="container max-w-screen-xl mx-auto px-4">
+      <section className="py-5 sm:py-7 bg-[#193f88]">
+        <div className="container max-w-screen-xl mx-auto px-4 text-white">
           <h2 className="text-3xl font-semibold mb-2">
             {cart?.cartItems?.length || 0} Item(s) in Cart
           </h2>

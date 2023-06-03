@@ -81,7 +81,7 @@ const Shipping = ({ addresses }) => {
 
                 <Link
                   href="/address/new"
-                  className="px-4 py-2 inline-block text-blue-600 border border-gray-300 rounded-md hover:bg-gray-100"
+                  className="px-4 py-2 inline-block text-[#193f88] border border-gray-300 rounded-md hover:bg-gray-100"
                 >
                   <i className="mr-1 fa fa-plus"></i> Add new address
                 </Link>
@@ -89,7 +89,7 @@ const Shipping = ({ addresses }) => {
                 <div className="flex justify-end space-x-2 mt-10">
                   <Link
                     href="/cart"
-                    className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
+                    className="px-5 py-2 inline-block text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-[#193f88] "
                   >
                     Back
                   </Link>

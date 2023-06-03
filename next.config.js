@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    API_URL: "http://localhost:3000",
+    API_URL: "http://localhost:3000/",
     DB_URI:
       "mongodb+srv://bambi:Risingsun1@cluster0.bvfk6.mongodb.net/bambi?retryWrites=true&w=majority",
     CLOUD_NAME: "dxqxkdc0r",
