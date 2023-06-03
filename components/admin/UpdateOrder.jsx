@@ -1,7 +1,7 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
-const OrderItem = ({ order }) => {
+const UpdateOrder = ({ order }) => {
   return (
     <article className="p-3 lg:p-5 mb-5 bg-white border border-blue-600 rounded-md">
       <header className="lg:flex justify-between mb-4">
@@ -77,8 +77,60 @@ const OrderItem = ({ order }) => {
           </figure>
         ))}
       </div>
+
+      <hr className="my-4" />
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <figure className="flex flex-row mb-4">
+          <div>
+            <div className="block w-20 h-20 rounded border border-gray-200 overflow-hidden p-3">
+              <img src={"/logo192.png"} height="60" width="60" alt="Title" />
+            </div>
+          </div>
+          <figcaption className="ml-3">
+            <p>Product 1</p>
+            <p className="mt-1 font-semibold">2x = $23</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <hr />
+
+      <div class="my-8">
+        <label class="block mb-3"> Update Order Status </label>
+        <div class="relative">
+          <select
+            class="block appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full"
+            name="category"
+            required
+          >
+            {["Processing", "Shipped", "Delivered"].map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+          <i class="absolute inset-y-0 right-0 p-2 text-gray-400">
+            <svg
+              width="22"
+              height="22"
+              class="fill-current"
+              viewBox="0 0 20 20"
+            >
+              <path d="M7 10l5 5 5-5H7z"></path>
+            </svg>
+          </i>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        className="mb-2 px-4 py-2 text-center w-full inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+      >
+        Update
+      </button>
     </article>
   );
 };
 
-export default OrderItem;
+export default UpdateOrder;
