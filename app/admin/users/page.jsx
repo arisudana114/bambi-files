@@ -3,9 +3,9 @@ import React from "react";
 
 import { cookies } from "next/headers";
 import queryString from "query-string";
-import Orders from "@/components/admin/Orders";
+import Users from "@/components/admin/Users";
 
-const getOrders = async (searchParams) => {
+const getUsers = async (searchParams) => {
   const nextCookies = cookies();
 
   const nextAuthSessionToken = nextCookies.get("next-auth.session-token");
@@ -17,7 +17,7 @@ const getOrders = async (searchParams) => {
   const searchQuery = queryString.stringify(urlParams);
 
   const { data } = await axios.get(
-    `${process.env.API_URL}/api/admin/orders?${searchQuery}`,
+    `${process.env.API_URL}/api/admin/users?${searchQuery}`,
     {
       headers: {
         Cookie: `next-auth.session-token=${nextAuthSessionToken?.value}`,
@@ -28,10 +28,10 @@ const getOrders = async (searchParams) => {
   return data;
 };
 
-const AdminOrdersPage = async ({ searchParams }) => {
-  const orders = await getOrders(searchParams);
+const AdminUsersPage = async ({ searchParams }) => {
+  const users = await getUsers(searchParams);
 
-  return <Orders orders={orders} />;
+  return <Users data={users} />;
 };
 
-export default AdminOrdersPage;
+export default AdminUsersPage;
