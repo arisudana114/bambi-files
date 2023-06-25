@@ -5,7 +5,8 @@ const nextConfig = {
   },
   env: {
     // API_URL: "https://bambi-files-ecommerce-arisudana114.vercel.app/",
-    API_URL: "http://localhost:3000/",
+    // API_URL: "http://localhost:3000/",
+    API_URL: "",
     DB_URI:
       "mongodb+srv://bambi:Risingsun1@cluster0.bvfk6.mongodb.net/bambi?retryWrites=true&w=majority",
     // NEXTAUTH_URL: "https://bambi-files-ecommerce-arisudana114.vercel.app/",
