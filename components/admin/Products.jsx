@@ -46,7 +46,9 @@ const Products = ({ data }) => {
             <tr className="bg-white">
               <td className="px-6 py-2">{product?.name}</td>
               <td className="px-6 py-2">{product?.stock}</td>
-              <td className="px-6 py-2">${product?.price}</td>
+              <td className="px-6 py-2">
+                Rp. {product?.price.toLocaleString()}
+              </td>
               <td className="px-6 py-2">
                 <div>
                   <Link

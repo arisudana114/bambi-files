@@ -74,8 +74,8 @@ const UpdateOrder = ({ order }) => {
             <li className="text-green-400">
               {order?.paymentInfo?.status?.toUpperCase()}
             </li>
-            <li>Tax paid: ${order?.paymentInfo?.taxPaid}</li>
-            <li>Total paid: ${order?.paymentInfo?.amountPaid}</li>
+            <li>Tax paid: Rp. {order?.paymentInfo?.taxPaid}</li>
+            <li>Total paid: Rp. {order?.paymentInfo?.amountPaid}</li>
           </ul>
         </div>
       </div>

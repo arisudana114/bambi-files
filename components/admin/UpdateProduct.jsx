@@ -36,12 +36,13 @@ const UpdateProduct = ({ data }) => {
   };
 
   const categories = [
-    "Electronics",
-    "Cameras",
-    "Laptops",
-    "Accessories",
-    "Headphones",
-    "Sports",
+    "Lever Arch Files",
+    "Box Files",
+    "Magazine Files",
+    "Ring Binders",
+    "Sheet Protectors",
+    "Clipboards",
+    "Zipper Bags",
   ];
 
   const submitHandler = (e) => {

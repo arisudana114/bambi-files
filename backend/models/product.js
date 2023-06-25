@@ -29,12 +29,13 @@ const productSchema = new mongoose.Schema({
     required: [true, "Please enter product category"],
     enum: {
       values: [
-        "Electronics",
-        "Cameras",
-        "Laptops",
-        "Accessories",
-        "Headphones",
-        "Sports",
+        "Lever Arch Files",
+        "Box Files",
+        "Magazine Files",
+        "Ring Binders",
+        "Sheet Protectors",
+        "Clipboards",
+        "Zipper Bags",
       ],
       message: "Please select correct category",
     },
@@ -53,6 +54,15 @@ const productSchema = new mongoose.Schema({
   },
   reviews: [
     {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
       rating: {
         type: Number,
         required: true,

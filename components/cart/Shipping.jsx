@@ -108,16 +108,16 @@ const Shipping = ({ addresses }) => {
                 <ul>
                   <li className="flex justify-between mb-1">
                     <span>Amount:</span>
-                    <span>${cart?.checkoutInfo?.amount}</span>
+                    <span>Rp. {cart?.checkoutInfo?.amount}</span>
                   </li>
                   <li className="flex justify-between mb-1">
                     <span>Est TAX:</span>
-                    <span>${cart?.checkoutInfo?.tax}</span>
+                    <span>Rp. {cart?.checkoutInfo?.tax}</span>
                   </li>
                   <li className="border-t flex justify-between mt-3 pt-3">
                     <span>Total Amount:</span>
                     <span className="text-gray-900 font-bold">
-                      ${cart?.checkoutInfo?.totalAmount}
+                      Rp. {cart?.checkoutInfo?.totalAmount}
                     </span>
                   </li>
                 </ul>

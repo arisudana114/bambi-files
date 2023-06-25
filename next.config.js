@@ -4,9 +4,11 @@ const nextConfig = {
     appDir: true,
   },
   env: {
+    // API_URL: "https://bambi-files-ecommerce-arisudana114.vercel.app/",
     API_URL: "http://localhost:3000/",
     DB_URI:
       "mongodb+srv://bambi:Risingsun1@cluster0.bvfk6.mongodb.net/bambi?retryWrites=true&w=majority",
+    // NEXTAUTH_URL: "https://bambi-files-ecommerce-arisudana114.vercel.app/",
     CLOUD_NAME: "dxqxkdc0r",
     CLOUDINARY_API_KEY: "424185237794643",
     CLOUDINARY_API_SECRET: "hfjmH0Rva2tj7gAkEOrDWkJEA1s",

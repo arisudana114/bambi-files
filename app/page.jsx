@@ -19,6 +19,7 @@ const getProducts = async (searchParams) => {
   const { data } = await axios.get(
     `${process.env.API_URL}/api/products?${searchQuery}`
   );
+
   return data;
 };
 
